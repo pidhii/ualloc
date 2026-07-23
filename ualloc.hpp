@@ -59,8 +59,7 @@ class uniform_allocator {
       return reinterpret_cast<T*>(m_new_block->data + m_new_block_offs++);
 
     assert(m_new_block_offs == block_length);
-    m_new_block =
-        block_allocator_traits::allocate(m_block_alloc, sizeof(block_type));
+    m_new_block = block_allocator_traits::allocate(m_block_alloc, 1);
     m_blocks.push_back(m_new_block);
     m_new_block_offs = 0;
     return allocate(n);
